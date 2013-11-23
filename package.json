@@ -1,0 +1,22 @@
+{
+        "name": "titanium-jsduck",
+        "version": "0.2.0",
+        "description": "Simple script that will setup JSDUCK for a Titanium Project",
+        "bin": "titanium-jsduck.js",
+        "dependencies": {
+                "commander": "2.x.x",
+				"wrench":"1.5.4",
+                "colors": "0.6.x"
+        },
+        "author": {
+                "name": "Appcelerator, Inc.",
+                "email": "info@appcelerator.com"
+        },
+        "maintainers": [
+                {
+                        "name": "Jamil Hassan Spain",
+                        "email": "jspain@appcelerator.com"
+                }
+        ],
+        "license": "Apache Public License v2"
+}
