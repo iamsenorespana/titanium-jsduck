@@ -29,8 +29,8 @@ var commander = require('commander'),
 		console.log('Titanium-JSDuck Version ' + commander.version() + ''.white );
 		console.log('');
 		
-		// console.log( commander.args );
-		// process.exit();
+
+		// Detecting if any commands + arguments where passed
 		if( commander.args.length === 0 ){
 			runHelp();
 		} else {
@@ -131,6 +131,7 @@ var commander = require('commander'),
 					console.log('[LOG] Detected an existing Alloy.jmk... Backing up to alloy.jmk.txt'.white);
 					console.log('');
 					
+					// Making a backup of alloy.jmk if already exists
 					fs.createReadStream('app/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk.txt'));
 					
 					// Copy over New Alloy.JMK
@@ -158,7 +159,11 @@ var commander = require('commander'),
 					
 					console.log('');
 					fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
-				
+
+                    var docPath = path.join(paths.targetDirectory,'docs');
+                    wrench.mkdirSyncRecursive(docPath, 0755);
+                    wrench.copyDirSyncRecursive(paths.docTemplates,paths.targetDocPath,{preserve:true,forceDelete:true});	
+									
 					process.exit();					
 				}
 			

@@ -1,5 +1,5 @@
 #center-container h1, #center-container h1 .class-source-link {
-  color: #996699;
+  color: #FF0000;
   font-family: Tahoma;
 }
 a:link {
@@ -9,23 +9,23 @@ a:visited {
 	color: #404040;
 }
 #north-region {
-  background: #996699;
-  background: -moz-linear-gradient(top,  #996699 0%, #996699 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#996699), color-stop(100%,#996699));
-  background: -webkit-linear-gradient(top,  #996699 0%,#996699 100%);
-  background: -o-linear-gradient(top,  #996699 0%,#996699 100%);
-  background: -ms-linear-gradient(top,  #996699 0%,#996699 100%);
-  background: linear-gradient(top bottom,  #996699 0%,#996699 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#996699', endColorstr='#996699',GradientType=0 );
+  background: #FF0000;
+  background: -moz-linear-gradient(top,  #FF0000 0%, #FF0000 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF000), color-stop(100%,#FF000));
+  background: -webkit-linear-gradient(top,  #FF0000 0%,#FF0000 100%);
+  background: -o-linear-gradient(top,  #FF0000 0%,#FF0000 100%);
+  background: -ms-linear-gradient(top,  #FF0000 0%,#FF0000 100%);
+  background: linear-gradient(top bottom,  #FF0000 0%,#FF0000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF0000', endColorstr='#FF0000',GradientType=0 );
 }
 #north-region .dropdown {
   background-position: center right;
 }
 #north-region #header-content {
   height: 42px;
-  background: url(project_logo.jpg) 0 0 no-repeat;
+  background: url(/images/project_logo.png) 0 0 no-repeat;
   background-size: 80px 20px;
   padding-top: 0px;
-  padding-left: 90px;
+  padding-left: 0px;
   font-size: 16px;
 }

@@ -1,5 +1,5 @@
 {
-	"--title": "First:Utility",
+	"--title": "Appcelerator Titanium Mobile Project Documentation",
 	"--output": "./generatedDocumentation",
 	"--touch-examples": true,
 	"--no-source": true,
