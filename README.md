@@ -8,21 +8,21 @@ Documentation of your software projects is a critical phase of the software deli
 
 The project includes two commands currently.  The first is to automate the installation of the post:compile hook and source files for the documentation.  The second command allows a quick method to preview the documentation within a web browser.
 
-#### Requirements
+## Requirements
 
 It is a requirement to have **jsduck** installed already.  If you do not have it installed, you can do so via the following:
 	gem install jsduck 
 	
 For more documentation about JsDuck, please visit the project 
 
-#### Installing the NPM package
+## Installing the NPM package
 
 Launch Terminal and run the following command:
 
 	npm install titanium-jsduck -g
 	
 
-#### Activating Documentation for your project
+## Activating Documentation for your project
 
 In order to use this NPM package, you must first be in the root of your Titanium Mobile Project. Either open a terminal window or use the Terminal inside Titanium Studio and run the following command:
 
@@ -36,7 +36,7 @@ This will install the following items in your Titanium Mobile Project:
 
 If an alloy.jmk already exists, it will back it up to be alloy.jmk.txt and install a fresh alloy.jmk with the post:compile command to run.
 
-#### Viewing the Documentation
+## Viewing the Documentation
 
 After your project has been compiled, you can now view the updated documentation. Instead of manually browsing to your Titanium Project in the finder, use this command:
 
@@ -49,10 +49,36 @@ This will open your documentation within the Safari Web Browser.  The following 
 	
 If you have a browser preference other than Safari, you can open it via Google Chrome or Firefox.  This command will detect if these apps exist within the /Applications folder first.  If they do not exist, it will default to Safari since that is sure to be available on everyone's Mac OS X install.  
 
-#### Documenting Files
+## Documenting Files
 First time using JsDuck for documentation ?? 
 
-You can browse the Senchalabs Wiki for JSDuck at the following link:  https://github.com/senchalabs/jsduck/wiki/Guide
+	/**
+	* this is the main index.js file
+	* @class Index
+	*/
+	
+	/**
+	* This is the doClick Method
+	* @method doClick
+	* 
+	*/
+	function doClick(e) {
+    alert($.label.text);
+	};
+
+
+	$.index.addEventListener('open', function(){
+		console.log('[WINDOW] IS opened');
+		Ti.API.info('[tiapi WINDOW]  is opened');
+	});
+
+
+	$.index.open();
+	
+
+	
+	
+You can browse the Senchalabs Wiki for JSDuck at the following link:  https://github.com/senchalabs/jsduck/wiki/Guide for more information.
 
 ## Changelog
 

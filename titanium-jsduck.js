@@ -113,6 +113,9 @@ var commander = require('commander'),
 			break;
 			}
 			
+			console.log('[LOG] Opening Project Documentation with the ' + browserName + ' Browser'.white );
+			console.log();
+			
 			exec("open -a \"/Applications/" + browserName + ".app\" docs/generatedDocumentation/index.html");
 			process.exit();
 		}
