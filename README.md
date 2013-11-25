@@ -13,7 +13,7 @@ The project includes two commands currently.  The first is to automate the insta
 It is a requirement to have **jsduck** installed already.  If you do not have it installed, you can do so via the following:
 	gem install jsduck 
 	
-For more documentation about JsDuck, please visit the project 
+For more documentation about JSDuck, please visit the project 
 
 ## Installing the NPM package
 
@@ -49,8 +49,13 @@ This will open your documentation within the Safari Web Browser.  The following 
 	
 If you have a browser preference other than Safari, you can open it via Google Chrome or Firefox.  This command will detect if these apps exist within the /Applications folder first.  If they do not exist, it will default to Safari since that is sure to be available on everyone's Mac OS X install.  
 
+## Generating Documentation 
+There may be an instance where you want to generate documentation without actually re-compiling the Titanium Project.  For this corner case, the following command is available as well:
+	
+	titanium-jsduck run
+
 ## Documenting Files
-First time using JsDuck for documentation ?? 
+First time using JSDuck for documentation? Here is a quick preview on how to document your controller.  This just tips the iceberg for the real capabilities of what you can do.
 
 	/**
 	* this is the main index.js file
@@ -66,19 +71,13 @@ First time using JsDuck for documentation ??
     alert($.label.text);
 	};
 
-
-	$.index.addEventListener('open', function(){
-		console.log('[WINDOW] IS opened');
-		Ti.API.info('[tiapi WINDOW]  is opened');
-	});
-
-
 	$.index.open();
 	
 
 	
 	
-You can browse the Senchalabs Wiki for JSDuck at the following link:  https://github.com/senchalabs/jsduck/wiki/Guide for more information.
+I truly recommend browsing the Senchalabs Wiki for JSDuck at the following link:  https://github.com/senchalabs/jsduck/wiki/Guide. for more information.
+
 
 ## Changelog
 
