@@ -83,7 +83,7 @@ I truly recommend browsing the Senchalabs Wiki for JSDuck at the following link:
 
 | Version | Notes |
 | ------- | -----:|
-| 0.2.0      | Initial commit  |
+| 1.0.0      | First release with basic functionality  |
  
 
 ## License
