@@ -128,7 +128,9 @@ var commander = require('commander'),
 						console.log('[WARNING] Cannot find Firefox Application installed, defaulting to Safari Browser'.orange );
 						console.log('');
 						browserName = "Safari";
-					}				
+					} else {
+						browserName = "Firefox";
+					}			
 					break;
 				default: 
 					browserName = "Safari";
