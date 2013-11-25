@@ -8,9 +8,14 @@
 				"wrench":"1.5.4",
                 "colors": "0.6.x"
         },
+	    "repository": {
+	       "type": "git",
+	       "url": "https://github.com/jamilhassanspain/titanium-jsduck.git"
+	     },
         "author": {
                 "name": "Jamil Hassan Spain",
-                "email": "jamilhassanspain@gmail.com"
+                "email": "jamilhassanspain@gmail.com",
+				"website":"http://www.jamilhassanspain.com"
         },
         "maintainers": [
                 {
