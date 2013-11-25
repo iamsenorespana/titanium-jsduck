@@ -10,7 +10,7 @@ var commander = require('commander'),
 	fs = require('fs'), 
 	wrench = require('wrench'),
 	exec = require("child_process").exec,
-	browser = "Safari",
+	browser = "Safari", versionBanner = "",
 	path = require('path'), paths = null;
 	
 	require('colors');
@@ -26,7 +26,8 @@ var commander = require('commander'),
 		
 		//Opening Banner
 		console.log('');
-		console.log('Titanium-JSDuck Version ' + commander.version() + ''.white );
+		versionBanner = "Titanium-JSDuck Version " + commander.version();
+		console.log( versionBanner );
 		console.log('');
 		
 
@@ -50,7 +51,7 @@ var commander = require('commander'),
 				break;
 			default:
 				console.log('');
-				console.log('Invalid Command');
+				console.log('[ERROR] Invalid Command has not found ');
 				console.log('');
 				break;
 			}			
@@ -84,10 +85,15 @@ var commander = require('commander'),
 		// Main Command Methods
 		// 
 		function runHelp(){
-			var messageHelp = "";
-			
+			var messageHelp = "Usage: titanium-jsduck [command] [parameters]\n\n";
+			messageHelp += "Commands:\n\tinstall \n\t\t- Installs JSDuck inside a Titanium Mobile Project.";
+			messageHelp += "\n\topen \n\t\t- Opens Documentation in Safari Browser";
+			messageHelp += "\n\topen firefox \n\t\t- Opens Documentation in Firefox Browser";
+			messageHelp += "\n\topen chrome  \n\t\t- Opens Documentation in Google Chrome Browser";
+			messageHelp += "\n\trun \n\t\t- Runs jsduck to generate Documentation without compiling Mobile Project";
 			
 			console.log(messageHelp);
+			console.log();
 			process.exit();
 			
 		}
@@ -128,7 +134,7 @@ var commander = require('commander'),
 				}
 				
 				var messageSuccess = "[LOG] Opening Project Documentation with the " + browserName + " Browser";
-				console.log(messageSuccess.white);
+				console.log(messageSuccess);
 				console.log();
 			
 				exec("open -a \"/Applications/" + browserName + ".app\" docs/documentation/index.html");
@@ -147,13 +153,13 @@ var commander = require('commander'),
 			if (fs.existsSync("tiapp.xml")) { // or fs.existsSync
 			    // 
 				paths = getPaths();
-				console.log("[LOG] Detected an Titanium Mobile Project".white );
+				console.log("[LOG] Detected an Titanium Mobile Project" );
 				console.log('');
 			
 				if( fs.existsSync("app/alloy.jmk") ){
 					// Alloy.jmk exists
 					//
-					console.log('[LOG] Detected an existing Alloy.jmk... Backing up to alloy.jmk.txt'.white);
+					console.log('[LOG] Detected an existing Alloy.jmk... Backing up to alloy.jmk.txt');
 					console.log('');
 					
 					// Making a backup of alloy.jmk if already exists
@@ -163,7 +169,7 @@ var commander = require('commander'),
 					 
 					if( fs.existsSync(paths.sourceTemplates + '/alloy.jmk') ){
 						fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
-						console.log('[LOG] Updated alloy.jmk with config for titanium-jsduck'.white);
+						console.log('[LOG] Updated alloy.jmk with config for titanium-jsduck');
 						console.log('');
 												 
 	                     var docPath = path.join(paths.targetDirectory,'docs');
