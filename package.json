@@ -1,16 +1,30 @@
 {
         "name": "titanium-jsduck",
         "version": "1.0.0",
-        "description": "Simple script that will setup JSDUCK for a Titanium Project",
+        "description": "Simple package that will automate JSDuck Documentation for a Titanium Alloy Mobile Project",
         "bin": "titanium-jsduck.js",
         "dependencies": {
                 "commander": "2.x.x",
 				"wrench":"1.5.4",
                 "colors": "0.6.x"
         },
+        "keywords": [
+                "appcelerator",
+                "titanium",
+                "mobile",
+				"jsduck",
+				"sencha",
+                "ios",
+                "iphone",
+                "android",
+                "blackberry",
+                "html5",
+                "mobileweb",
+                "mobile web"
+        ],
 	    "repository": {
 	       "type": "git",
-	       "url": "https://github.com/jamilhassanspain/titanium-jsduck.git"
+	       "url": "git://github.com/jamilhassanspain/titanium-jsduck.git"
 	     },
         "author": {
                 "name": "Jamil Hassan Spain",
