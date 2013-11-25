@@ -45,6 +45,9 @@ var commander = require('commander'),
 				}
 				runOpenDocumentation(browser);
 				break;
+			case 'run':
+				runGenerator();
+				break;
 			default:
 				console.log('');
 				console.log('Invalid Command');
@@ -81,42 +84,61 @@ var commander = require('commander'),
 		// Main Command Methods
 		// 
 		function runHelp(){
+			var messageHelp = "";
 			
-			console.log('help Information');
+			
+			console.log(messageHelp);
 			process.exit();
 			
 		}
 		
+		function runGenerator(){
+			console.log("[LOG] Running JSDuck Documentation Generator");
+			console.log();
+			exec("jsduck --config=docs/jsduck.json app");
+			process.exit();
+		}
+		
 		function runOpenDocumentation(browserName){
 			
-			switch(browserName){
-			case 'Chrome':
-			case 'chrome':
-				if( !fs.existsSync("/Applications/Google\ Chrome.app") ){
-					console.log('[WARNING] Cannot find Chrome Application installed, defaulting to Safari Browser'.orange );
-					console.log('');
+			if( fs.existsSync("docs/documentation/index.html") ){
+
+				switch(browserName){
+				case 'Chrome':
+				case 'chrome':
+					if( !fs.existsSync("/Applications/Google\ Chrome.app") ){
+						console.log('[WARNING] Cannot find Chrome Application installed, defaulting to Safari Browser'.orange );
+						console.log('');
+						browserName = "Safari";
+					} else {
+						browserName = "Google\ Chrome";
+					}
+					break;
+				case 'Firefox':
+				case 'firefox':
+					if( !fs.existsSync("/Applications/Firefox.app") ){
+						console.log('[WARNING] Cannot find Firefox Application installed, defaulting to Safari Browser'.orange );
+						console.log('');
+						browserName = "Safari";
+					}				
+					break;
+				default: 
 					browserName = "Safari";
-				} else {
-					browserName = "Google\ Chrome";
+				break;
 				}
-				break;
-			case 'Firefox':
-			case 'firefox':
-				if( !fs.existsSync("/Applications/Firefox.app") ){
-					console.log('[WARNING] Cannot find Firefox Application installed, defaulting to Safari Browser'.orange );
-					console.log('');
-					browserName = "Safari";
-				}				
-				break;
-			default: 
-				browserName = "Safari";
-			break;
+				
+				var messageSuccess = "[LOG] Opening Project Documentation with the " + browserName + " Browser";
+				console.log(messageSuccess.white);
+				console.log();
+			
+				exec("open -a \"/Applications/" + browserName + ".app\" docs/documentation/index.html");
+								
+			} else {
+				var messageFailure = "[ERROR] Documentation Folder does not exist yet.  Have you compiled your project yet?";
+				console.log(messageFailure.red);
+				console.log();				
 			}
-			
-			console.log('[LOG] Opening Project Documentation with the ' + browserName + ' Browser'.white );
-			console.log();
-			
-			exec("open -a \"/Applications/" + browserName + ".app\" docs/generatedDocumentation/index.html");
+
 			process.exit();
 		}
 		

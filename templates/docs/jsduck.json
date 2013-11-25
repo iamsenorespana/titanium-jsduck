@@ -1,6 +1,6 @@
 {
 	"--title": "Appcelerator Titanium Mobile Project Documentation",
-	"--output": "./generatedDocumentation",
+	"--output": "./documentation",
 	"--touch-examples": true,
 	"--no-source": true,
 	"--footer": "copyright  2013",
