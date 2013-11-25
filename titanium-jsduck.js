@@ -28,7 +28,7 @@ var commander = require('commander'),
 		console.log('');
 		versionBanner = "Titanium-JSDuck Version " + commander.version();
 		console.log( versionBanner );
-		console.log('');
+
 		
 
 		// Detecting if any commands + arguments where passed
@@ -101,7 +101,7 @@ var commander = require('commander'),
 		}
 		
 		function runGenerator(){
-			console.log("[LOG] Running JSDuck Documentation Generator");
+			console.log("[INFO] Running JSDuck Documentation Generator");
 			console.log();
 			exec("jsduck --config=docs/jsduck.json app");
 			process.exit();
@@ -116,7 +116,6 @@ var commander = require('commander'),
 				case 'chrome':
 					if( !fs.existsSync("/Applications/Google\ Chrome.app") ){
 						console.log('[WARNING] Cannot find Chrome Application installed, defaulting to Safari Browser'.orange );
-						console.log('');
 						browserName = "Safari";
 					} else {
 						browserName = "Google\ Chrome";
@@ -126,7 +125,6 @@ var commander = require('commander'),
 				case 'firefox':
 					if( !fs.existsSync("/Applications/Firefox.app") ){
 						console.log('[WARNING] Cannot find Firefox Application installed, defaulting to Safari Browser'.orange );
-						console.log('');
 						browserName = "Safari";
 					} else {
 						browserName = "Firefox";
@@ -137,7 +135,7 @@ var commander = require('commander'),
 				break;
 				}
 				
-				var messageSuccess = "[LOG] Opening Project Documentation with the " + browserName + " Browser";
+				var messageSuccess = "[INFO] Opening Project Documentation with the " + browserName + " Browser";
 				console.log(messageSuccess);
 				console.log();
 			
@@ -157,14 +155,14 @@ var commander = require('commander'),
 			if (fs.existsSync("tiapp.xml")) { // or fs.existsSync
 			    // 
 				paths = getPaths();
-				console.log("[LOG] Detected an Titanium Mobile Project" );
-				console.log('');
+				console.log("[INFO] Detected an Titanium Mobile Project" );
+
 			
 				if( fs.existsSync("app/alloy.jmk") ){
 					// Alloy.jmk exists
 					//
-					console.log('[LOG] Detected an existing Alloy.jmk... Backing up to alloy.jmk.txt');
-					console.log('');
+					console.log('[INFO] Detected an existing Alloy.jmk... Backing up to alloy.jmk.txt');
+
 					
 					// Making a backup of alloy.jmk if already exists
 					fs.createReadStream('app/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk.txt'));
@@ -173,8 +171,8 @@ var commander = require('commander'),
 					 
 					if( fs.existsSync(paths.sourceTemplates + '/alloy.jmk') ){
 						fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
-						console.log('[LOG] Updated alloy.jmk with config for titanium-jsduck');
-						console.log('');
+						console.log('[INFO] Updated alloy.jmk with config for titanium-jsduck');
+
 												 
 	                     var docPath = path.join(paths.targetDirectory,'docs');
 	                     wrench.mkdirSyncRecursive(docPath, 0755);
