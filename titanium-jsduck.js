@@ -51,8 +51,9 @@ var commander = require('commander'),
 				break;
 			default:
 				console.log('');
-				console.log('[ERROR] Invalid Command has not found ');
+				console.log('[ERROR] Invalid Command entered. Please check the usage again.');
 				console.log('');
+				runHelp();
 				break;
 			}			
 		}
@@ -93,6 +94,7 @@ var commander = require('commander'),
 			messageHelp += "\n\trun \n\t\t- Runs jsduck to generate Documentation without compiling Mobile Project";
 			
 			console.log(messageHelp);
+			console.log();
 			console.log();
 			process.exit();
 			
