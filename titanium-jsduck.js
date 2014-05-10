@@ -165,12 +165,14 @@ var commander = require('commander'),
 
 					
 					// Making a backup of alloy.jmk if already exists
-					fs.createReadStream('app/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk.txt'));
+					//fs.createReadStream('app/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk.txt'));
+					fs.writeFileSync('app/alloy.jmk.txt', fs.readFileSync('app/alloy.jmk'));
 					
 					// Copy over New Alloy.JMK
 					 
 					if( fs.existsSync(paths.sourceTemplates + '/alloy.jmk') ){
-						fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
+						//fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
+						fs.writeFileSync('app/alloy.jmk', fs.readFileSync(paths.sourceTemplates + '/alloy.jmk'));
 						console.log('[INFO] Updated alloy.jmk with config for titanium-jsduck');
 
 												 
@@ -191,8 +193,8 @@ var commander = require('commander'),
 					//console.log("Please wait.... ");
 					
 					console.log('');
-					fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
-
+					//fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
+					fs.writeFileSync('app/alloy.jmk', fs.readFileSync(paths.sourceTemplates + '/alloy.jmk'));
                     var docPath = path.join(paths.targetDirectory,'docs');
                     wrench.mkdirSyncRecursive(docPath, 0755);
                     wrench.copyDirSyncRecursive(paths.docTemplates,paths.targetDocPath,{preserve:true,forceDelete:true});	

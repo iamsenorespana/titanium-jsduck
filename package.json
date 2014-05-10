@@ -1,6 +1,6 @@
 {
         "name": "titanium-jsduck",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "description": "Simple package that will automate JSDuck Documentation for a Titanium Alloy Mobile Project",
         "bin": "titanium-jsduck.js",
         "dependencies": {
