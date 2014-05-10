@@ -94,6 +94,7 @@ I truly recommend browsing the Senchalabs Wiki for JSDuck at the following link:
 | ------- | -----:|
 | 1.0.0      | First release with basic functionality  |
 | 1.1.0      | Minor updates  |
+| 1.2.3		 | Added support to detect if jsduck is already installed, restricted operation of titanium-jsduck to be only for mac operating system |
  
 
 ## License
