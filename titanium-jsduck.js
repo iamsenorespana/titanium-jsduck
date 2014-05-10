@@ -67,7 +67,7 @@ var commander = require('commander'),
 			} else {
 				console.log('');
 				console.log('[ERROR] JSDUCK is not installed. This ruby package is required use this node npm package.'.red);
-				console.log('[ALERT] Install JSDUCK by running this command: gem install jsduck');
+				console.log('[ALERT] Install JSDUCK by running this command: sudo gem install jsduck');
 				console.log('');
 			}
 						
@@ -75,7 +75,7 @@ var commander = require('commander'),
 		default:
 			
 			console.log('');
-			console.log('[WARNING] titanium-jsduck is not currently supported for Operating System'.red );
+			console.log('[WARNING] titanium-jsduck is not currently supported for your current Operating System'.red );
 			console.log('');
 			
 			break;
