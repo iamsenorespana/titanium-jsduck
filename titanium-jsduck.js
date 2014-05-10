@@ -31,7 +31,7 @@ var commander = require('commander'),
 		console.log( versionBanner );
 		
 		switch( os.platform() ){
-		case 'darwin2':
+		case 'darwin':
 			
 			if( fs.existsSync("/usr/bin/jsduck") ){
 
