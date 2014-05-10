@@ -8,6 +8,7 @@
 
 var commander = require('commander'),
 	fs = require('fs'), 
+	os = require('os'),
 	wrench = require('wrench'),
 	exec = require("child_process").exec,
 	browser = "Safari", versionBanner = "",
@@ -29,42 +30,57 @@ var commander = require('commander'),
 		versionBanner = "Titanium-JSDuck Version " + commander.version();
 		console.log( versionBanner );
 
+		console.log('PLATFORM IS: ' + os.platform() );
 		
-		if( fs.existsSync("/usr/bin/jsduck") ){
-
-			// Detecting if any commands + arguments where passed
-			if( commander.args.length === 0 ){
-				runHelp();
-			} else {
-				switch(commander.args[0]){
-				case 'install':
-					runInstall();
-					break;
-				case 'open':
-				 
-					if( commander.args[1] ){
-						browser = commander.args[1];
-					}
-					runOpenDocumentation(browser);
-					break;
-				case 'run':
-					runGenerator();
-					break;
-				default:
-					console.log('');
-					console.log('[ERROR] Invalid Command entered. Please check the usage again.');
-					console.log('');
-					runHelp();
-					break;
-				}			
-			}			
+		switch( os.platform() ){
+		case 'darwin':
 			
-		} else {
+			if( fs.existsSync("/usr/bin/jsduck") ){
+
+				// Detecting if any commands + arguments where passed
+				if( commander.args.length === 0 ){
+					runHelp();
+				} else {
+					switch(commander.args[0]){
+					case 'install':
+						runInstall();
+						break;
+					case 'open':
+				 
+						if( commander.args[1] ){
+							browser = commander.args[1];
+						}
+						runOpenDocumentation(browser);
+						break;
+					case 'run':
+						runGenerator();
+						break;
+					default:
+						console.log('');
+						console.log('[ERROR] Invalid Command entered. Please check the usage again.');
+						console.log('');
+						runHelp();
+						break;
+					}			
+				}			
+			
+			} else {
+				console.log('');
+				console.log('[ERROR] JSDUCK is not installed. This ruby package is required use this node npm package.'.red);
+				console.log('[ALERT] Install JSDUCK by running this command: gem install jsduck');
+				console.log('');
+			}
+						
+			break;
+		default:
+			
 			console.log('');
-			console.log('[ERROR] JSDUCK is not installed. This ruby package is required use this node npm package.'.red);
-			console.log('[ALERT] Install JSDUCK by running this command: gem install jsduck');
+			console.log('[WARNING] titanium-jsduck is not currently supported for Operating System'.red );
 			console.log('');
+			
+			break;
 		}
+
 
 		
 		
