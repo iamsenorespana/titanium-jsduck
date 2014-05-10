@@ -11,9 +11,10 @@ The project includes two commands currently.  The first is to automate the insta
 ## Requirements
 
 It is a requirement to have **jsduck** installed already.  If you do not have it installed, you can do so via the following:
-	gem install jsduck 
+
+	$ gem install jsduck
 	
-For more documentation about JSDuck, please visit the project 
+For more documentation about JSDuck, please visit the project: https://github.com/senchalabs/jsduck
 
 ## Installing the NPM package
 
