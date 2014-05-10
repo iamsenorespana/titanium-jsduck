@@ -29,11 +29,9 @@ var commander = require('commander'),
 		console.log('');
 		versionBanner = "Titanium-JSDuck Version " + commander.version();
 		console.log( versionBanner );
-
-		console.log('PLATFORM IS: ' + os.platform() );
 		
 		switch( os.platform() ){
-		case 'darwin':
+		case 'darwin2':
 			
 			if( fs.existsSync("/usr/bin/jsduck") ){
 
