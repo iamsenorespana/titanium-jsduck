@@ -124,10 +124,25 @@ var commander = require('commander'),
 		}
 		
 		function runGenerator(){
-			console.log("[INFO] Running JSDuck Documentation Generator");
+			console.log("[INFO] Running JSDuck Documentation Generator ... Please Wait for Output");
 			console.log();
-			exec("jsduck --config=docs/jsduck.json app");
-			process.exit();
+			exec("jsduck --config=docs/jsduck.json app",
+		    	function (error, stdout, stderr) {
+		      	    console.log('[INFO-LOGS]  Standard Output from run() method ');
+					console.log( stdout );
+					console.log();
+		      		console.log('[INFO-WARNINGS] Running Standard error from run() method : ' );
+					console.log( stderr );
+					console.log();
+		      		if (error !== null) {
+						console.log();
+		        		console.log('[ERRORS] Listing Errors : ');
+						console.log(error);
+		     	   }
+				   process.exit();
+		  	 	}//);		
+			);
+			
 		}
 		
 		function runOpenDocumentation(browserName){
