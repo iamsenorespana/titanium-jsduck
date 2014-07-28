@@ -29,8 +29,7 @@ var commander = require('commander'),
 		console.log('');
 		versionBanner = "Titanium-JSDuck Version " + commander.version();
 		console.log( versionBanner );
-
-        var sys = require('sys');
+        
         exec("which jsduck", function(error, stdout, stderr) {
             if(error !== null) { 
                 if(error.code === 1) {
