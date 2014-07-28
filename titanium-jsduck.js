@@ -52,7 +52,7 @@ var commander = require('commander'),
                 } else {
                     switch(commander.args[0]){
                     case 'install':
-                        runInstall();
+                        runInstall((commander.args[1] === "force")? true:false);
                         break;
                     case 'open':
                         runOpenDocumentation(commander.args[1] || browser);
@@ -171,7 +171,7 @@ var commander = require('commander'),
 			process.exit();
 		}
 		
-		function runInstall(){
+		function runInstall(forceDeleteState){
 			// Detect if /app folder exists and/or we are at the root of the Titanium Mobile Project
 			if (fs.existsSync("tiapp.xml")) { // or fs.existsSync
 			    // 
@@ -199,7 +199,7 @@ var commander = require('commander'),
 												 
 	                     var docPath = path.join(paths.targetDirectory,'docs');
 	                     wrench.mkdirSyncRecursive(docPath, 0755);
-	                     wrench.copyDirSyncRecursive(paths.docTemplates,paths.targetDocPath,{preserve:true,forceDelete:true});	
+	                     wrench.copyDirSyncRecursive(paths.docTemplates,paths.targetDocPath,{preserve:true,forceDelete:forceDeleteState});	
 						 
 						 					
 					} else {
@@ -216,6 +216,7 @@ var commander = require('commander'),
 					console.log('');
 					//fs.createReadStream(paths.sourceTemplates + '/alloy.jmk').pipe(fs.createWriteStream('app/alloy.jmk'));
 					fs.writeFileSync('app/alloy.jmk', fs.readFileSync(paths.sourceTemplates + '/alloy.jmk'));
+					
                     var docPath = path.join(paths.targetDirectory,'docs');
                     wrench.mkdirSyncRecursive(docPath, 0755);
                     wrench.copyDirSyncRecursive(paths.docTemplates,paths.targetDocPath,{preserve:true,forceDelete:true});	
@@ -229,7 +230,7 @@ var commander = require('commander'),
 				// App does not exists
 			    // 
 				console.log("Cannot detect if an App folder exists. ");
-				console.log("Are you sure you are in the root of Titanium Mobile Project? ");
+				console.log("Are you sure you are in the root of Appcelerator Mobile Project? ");
 				console.log('');
 			
 				process.exit();		
