@@ -152,6 +152,14 @@ var commander = require('commander'),
     						browserName = "Firefox";
     					}			
     					break;
+    				case 'opera':
+                        if( !fs.existsSync("/Applications/opera.app") ){
+                            console.log('[WARNING] Cannot find Opera Application installed, defaulting to Safari Browser'.orange );
+                            browserName = "Safari";
+                        } else {
+                            browserName = "Opera";
+                        }           
+                        break;
     				case 'safari':
     				    browserName = "Safari";
     				    break				
@@ -161,7 +169,7 @@ var commander = require('commander'),
 				console.log(messageSuccess);
 				console.log();
 				
-				exec("open " + '' +(browserName ? ('-a "' + browserName + '" '):'') + '"' + docUrl + '"');
+				exec("open " + (browserName ? ('-a "' + browserName + '" '):'') + '"' + docUrl + '"');
 			} else {
 				var messageFailure = "[ERROR] Documentation Folder does not exist yet.  Have you compiled your project yet? ";
 				console.log(messageFailure.red);

@@ -51,12 +51,12 @@ After your project has been compiled, you can now view the updated documentation
 
 	$ titanium-jsduck open
 	
-This will open your documentation within the Safari Web Browser.  The following **open** command will also accept two optional parameters.  
+This will open your documentation within the system default Web Browser. The following **open** command will also accept browser name as optional parameter.  
 
 	$ titanium-jsduck open firefox
 	$ titanium-jsduck open chrome
 	
-If you have a browser preference other than Safari, you can open it via Google Chrome or Firefox.  This command will detect if these apps exist within the /Applications folder first.  If they do not exist, it will default to Safari since that is sure to be available on everyone's Mac OS X install.  
+If you have a browser preference other than Safari, you can open it via Google Chrome, Firefox or Opera. This command will detect if these apps exist within the /Applications folder first.  If they do not exist, it will default to Safari since that is sure to be available on everyone's Mac OS X install.  
 
 ## Generating Documentation 
 There may be an instance where you want to generate documentation without actually re-compiling the Titanium Project.  For this corner case, the following command is available as well:
