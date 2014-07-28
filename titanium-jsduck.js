@@ -159,8 +159,8 @@ var commander = require('commander'),
 				
 				var messageSuccess = "[INFO] Opening Project Documentation with the " + browserName + " Browser";
 				console.log(messageSuccess);
-				console.log();		
-							
+				console.log();
+				
 				exec("open " + '' +(browserName ? ('-a "' + browserName + '" '):'') + '"' + docUrl + '"');
 			} else {
 				var messageFailure = "[ERROR] Documentation Folder does not exist yet.  Have you compiled your project yet? ";
