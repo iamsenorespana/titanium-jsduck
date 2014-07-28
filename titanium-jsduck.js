@@ -11,7 +11,7 @@ var commander = require('commander'),
 	os = require('os'),
 	wrench = require('wrench'),
 	exec = require("child_process").exec,
-	browser = "Safari", versionBanner = "",
+	browser = "", versionBanner = "",
 	path = require('path'), paths = null;
 	
 	require('colors');
@@ -55,11 +55,7 @@ var commander = require('commander'),
                         runInstall();
                         break;
                     case 'open':
-                 
-                        if( commander.args[1] ){
-                            browser = commander.args[1];
-                        }
-                        runOpenDocumentation(browser);
+                        runOpenDocumentation(commander.args[1] || browser);
                         break;
                     case 'run':
                         runGenerator();
@@ -137,39 +133,35 @@ var commander = require('commander'),
 		}
 		
 		function runOpenDocumentation(browserName){
-			
-			if( fs.existsSync("docs/documentation/index.html") ){
-
-				switch(browserName){
-				case 'Chrome':
-				case 'chrome':
-					if( !fs.existsSync("/Applications/Google\ Chrome.app") ){
-						console.log('[WARNING] Cannot find Chrome Application installed, defaulting to Safari Browser'.orange );
-						browserName = "Safari";
-					} else {
-						browserName = "Google\ Chrome";
-					}
-					break;
-				case 'Firefox':
-				case 'firefox':
-					if( !fs.existsSync("/Applications/Firefox.app") ){
-						console.log('[WARNING] Cannot find Firefox Application installed, defaulting to Safari Browser'.orange );
-						browserName = "Safari";
-					} else {
-						browserName = "Firefox";
-					}			
-					break;
-				default: 
-					browserName = "Safari";
-				break;
+			var docUrl = "docs/documentation/index.html";
+			if( fs.existsSync(docUrl) ){			    
+				switch(browserName.toLowerCase()){				    			
+    				case 'chrome':
+    					if( !fs.existsSync("/Applications/Google\ Chrome.app") ){
+    						console.log('[WARNING] Cannot find Chrome Application installed, defaulting to Safari Browser'.orange );
+    						browserName = "Safari";
+    					} else {
+    						browserName = "Google Chrome";
+    					}
+    					break;				
+    				case 'firefox':
+    					if( !fs.existsSync("/Applications/Firefox.app") ){
+    						console.log('[WARNING] Cannot find Firefox Application installed, defaulting to Safari Browser'.orange );
+    						browserName = "Safari";
+    					} else {
+    						browserName = "Firefox";
+    					}			
+    					break;
+    				case 'safari':
+    				    browserName = "Safari";
+    				    break				
 				}
 				
 				var messageSuccess = "[INFO] Opening Project Documentation with the " + browserName + " Browser";
 				console.log(messageSuccess);
-				console.log();
-			
-				exec("open -a \"/Applications/" + browserName + ".app\" docs/documentation/index.html");
-								
+				console.log();		
+							
+				exec("open " + '' +(browserName ? ('-a "' + browserName + '" '):'') + '"' + docUrl + '"');
 			} else {
 				var messageFailure = "[ERROR] Documentation Folder does not exist yet.  Have you compiled your project yet? ";
 				console.log(messageFailure.red);
