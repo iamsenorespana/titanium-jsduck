@@ -57,6 +57,7 @@ This will open your documentation within the system default Web Browser. The fol
 
 	$ titanium-jsduck open firefox
 	$ titanium-jsduck open chrome
+	$ titanium-jsduck open opera
 	
 If you have a browser preference other than Safari, you can open it via Google Chrome, Firefox or Opera. This command will detect if these apps exist within the /Applications folder first.  If they do not exist, it will default to Safari since that is sure to be available on everyone's Mac OS X install.  
 
@@ -98,6 +99,7 @@ I truly recommend browsing the Senchalabs Wiki for JSDuck at the following link:
 | 1.1.0      | Minor updates  |
 | 1.2.3		 | Added support to detect if jsduck is already installed, restricted operation of titanium-jsduck to be only for mac operating system |
 | 1.2.5		 | Fixed issue to make documentation open with default browser + allowing user to force a browser to use, if docs directory exists, we will not forceDelete ( instead use the titanium-jsduck install force command to forceDelete of the docs directory on reinstall into a mobile project), improved detection for proper installation of jsduck ruby project |
+| 1.2.6      | Adding support for Opera Browser  |
  
 
 ## License
