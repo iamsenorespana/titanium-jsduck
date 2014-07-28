@@ -43,7 +43,9 @@ This will install the following items in your Titanium Mobile Project:
 * a docs/ folder in the root of your project
 * alloy.jmk inside your app/ folder
 
-If an alloy.jmk already exists, it will back it up to be alloy.jmk.txt and install a fresh alloy.jmk with the post:compile command to run.
+If an alloy.jmk already exists, it will back it up to be alloy.jmk.txt and install a fresh alloy.jmk with the post:compile command to run.  If your docs folder already exists in the remote chance you are trying to reinstall titanium-jsduck in a mobile project, the docs folder will not be automatically overwritten.  To force the docs folder to be overwritten, please use this command.
+
+	titanium-jsduck install force
 
 ## Viewing the Documentation
 
@@ -95,6 +97,7 @@ I truly recommend browsing the Senchalabs Wiki for JSDuck at the following link:
 | 1.0.0      | First release with basic functionality  |
 | 1.1.0      | Minor updates  |
 | 1.2.3		 | Added support to detect if jsduck is already installed, restricted operation of titanium-jsduck to be only for mac operating system |
+| 1.2.5		 | Fixed issue to make documentation open with default browser + allowing user to force a browser to use, if docs directory exists, we will not forceDelete ( instead use the titanium-jsduck install force command to forceDelete of the docs directory on reinstall into a mobile project), improved detection for proper installation of jsduck ruby project |
  
 
 ## License
