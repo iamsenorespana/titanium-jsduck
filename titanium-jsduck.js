@@ -230,7 +230,7 @@ var commander = require('commander'),
 				// App does not exists
 			    // 
 				console.log("Cannot detect if an App folder exists. ");
-				console.log("Are you sure you are in the root of Appcelerator Mobile Project? ");
+				console.log("Are you sure you are in the root of Appcelerator Titanium Mobile Project? ");
 				console.log('');
 			
 				process.exit();		
