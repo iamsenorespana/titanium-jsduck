@@ -29,47 +29,100 @@ var commander = require('commander'),
 		console.log('');
 		versionBanner = "Titanium-JSDuck Version " + commander.version();
 		console.log( versionBanner );
+
+		switch( process.platform ){
+			case "win32":
+		        exec("where jsduck", function(error, stdout, stderr) {
+		            if(error !== null) { 
+		                if(error.code === 1) {
+		                    console.log('');
+		                    console.log('[ERROR] JSDUCK is not installed. This ruby package is required use this node npm package.'.red);
+		                    console.log('[ALERT] Installing JSDUCK will require the Ruby Development Kit to be installed.  Download it at the following URL: http://rubyinstaller.org/downloads.  After you install the Devkit, follow the instructions under Quick Start on this URL: https://github.com/oneclick/rubyinstaller/wiki/Development-Kit.   ')
+		                    console.log('[ALERT] Now you can install JSDUCK by running this command: gem install jsduck');
+		                    console.log('');
+		                } else {
+		                    console.log('');
+		                    console.log('[WARNING] titanium-jsduck is not currently supported for your current Operating System'.red );
+		                    console.log('');
+		                }
+		                return;
+		            }
+		                
+		            if(stdout) {
+		                // Detecting if any commands + arguments where passed
+		                if( commander.args.length === 0 ){
+		                    runHelp();
+		                } else {
+		                    switch(commander.args[0]){
+		                    case 'install':
+		                        runInstall((commander.args[1] === "force")? true:false);
+		                        break;
+		                    case 'open':
+		                        runOpenWindowsDocumentation(commander.args[1] || browser);
+		                        break;
+		                    case 'run':
+		                        runGenerator();
+		                        break;
+		                    default:
+		                        console.log('');
+		                        console.log('[ERROR] Invalid Command entered. Please check the usage again.');
+		                        console.log('');
+		                        runHelp();
+		                        break;
+		                    }           
+		                }           
+		            }
+		        });			
+			
+			break;
+			case "darwin":
+		        exec("which jsduck", function(error, stdout, stderr) {
+		            if(error !== null) { 
+		                if(error.code === 1) {
+		                    console.log('');
+		                    console.log('[ERROR] JSDUCK is not installed. This ruby package is required use this node npm package.'.red);
+		                    console.log('[ALERT] Install JSDUCK by running this command: sudo gem install jsduck');
+		                    console.log('');
+		                } else {
+		                    console.log('');
+		                    console.log('[WARNING] titanium-jsduck is not currently supported for your current Operating System'.red );
+		                    console.log('');
+		                }
+		                return;
+		            }
+		                
+		            if(stdout) {
+		                // Detecting if any commands + arguments where passed
+		                if( commander.args.length === 0 ){
+		                    runHelp();
+		                } else {
+		                    switch(commander.args[0]){
+		                    case 'install':
+		                        runInstall((commander.args[1] === "force")? true:false);
+		                        break;
+		                    case 'open':
+		                        runOpenDocumentation(commander.args[1] || browser);
+		                        break;
+		                    case 'run':
+		                        runGenerator();
+		                        break;
+		                    default:
+		                        console.log('');
+		                        console.log('[ERROR] Invalid Command entered. Please check the usage again.');
+		                        console.log('');
+		                        runHelp();
+		                        break;
+		                    }           
+		                }           
+		            }
+		        });			
+			break;
+			case "linux":
+			
+			break;
+		}
         
-        exec("which jsduck", function(error, stdout, stderr) {
-            if(error !== null) { 
-                if(error.code === 1) {
-                    console.log('');
-                    console.log('[ERROR] JSDUCK is not installed. This ruby package is required use this node npm package.'.red);
-                    console.log('[ALERT] Install JSDUCK by running this command: sudo gem install jsduck');
-                    console.log('');
-                } else {
-                    console.log('');
-                    console.log('[WARNING] titanium-jsduck is not currently supported for your current Operating System'.red );
-                    console.log('');
-                }
-                return;
-            }
-                
-            if(stdout) {
-                // Detecting if any commands + arguments where passed
-                if( commander.args.length === 0 ){
-                    runHelp();
-                } else {
-                    switch(commander.args[0]){
-                    case 'install':
-                        runInstall((commander.args[1] === "force")? true:false);
-                        break;
-                    case 'open':
-                        runOpenDocumentation(commander.args[1] || browser);
-                        break;
-                    case 'run':
-                        runGenerator();
-                        break;
-                    default:
-                        console.log('');
-                        console.log('[ERROR] Invalid Command entered. Please check the usage again.');
-                        console.log('');
-                        runHelp();
-                        break;
-                    }           
-                }           
-            }
-        });
+
 		
 		//
 		// HELPER METHODS
@@ -130,6 +183,68 @@ var commander = require('commander'),
 		  	 	}//);		
 			);
 			
+		}
+		
+		function runOpenWindowsDocumentation(){
+			var docUrl = "docs/documentation/index.html";
+			if( fs.existsSync(docUrl) ){			    
+				// switch(browserName.toLowerCase()){				    			
+    				// case 'chrome':
+    					// if( !fs.existsSync("/Applications/Google\ Chrome.app") ){
+    						// console.log('[WARNING] Cannot find Chrome Application installed, defaulting to Safari Browser'.orange );
+    						// browserName = "Safari";
+    					// } else {
+    						// browserName = "Google Chrome";
+    					// }
+    					// break;				
+    				// case 'firefox':
+    					// if( !fs.existsSync("/Applications/Firefox.app") ){
+    						// console.log('[WARNING] Cannot find Firefox Application installed, defaulting to Safari Browser'.orange );
+    						// browserName = "Safari";
+    					// } else {
+    						// browserName = "Firefox";
+    					// }			
+    					// break;
+    				// case 'opera':
+                        // if( !fs.existsSync("/Applications/opera.app") ){
+                            // console.log('[WARNING] Cannot find Opera Application installed, defaulting to Safari Browser'.orange );
+                            // browserName = "Safari";
+                        // } else {
+                            // browserName = "Opera";
+                        // }           
+                        // break;
+    				// case 'safari':
+    				    // browserName = "Safari";
+    				    // break				
+				// }
+				
+				var messageSuccess = "[INFO] Opening Project Documentation with the system default browser"; //" + browserName + " Browser";
+				console.log(messageSuccess);
+				console.log();
+				
+				exec('explorer "docs\documentation\index.html"', 
+			    	function (error, stdout, stderr) {
+			      	    console.log('[INFO-LOGS]  Standard Output from open() method ');
+						console.log( stdout );
+						console.log();
+			      		console.log('[INFO-WARNINGS] Running Standard error from open() method : ' );
+						console.log( stderr );
+						console.log();
+			      		if (error !== null) {
+							console.log();
+			        		console.log('[ERRORS] Listing Errors : ');
+							console.log(error);
+			     	   }
+					   process.exit();
+			  	 	}				
+				);
+			} else {
+				var messageFailure = "[ERROR] Documentation Folder does not exist yet.  Have you compiled your project yet? ";
+				console.log(messageFailure.red);
+				console.log();				
+			}
+
+			process.exit();			
 		}
 		
 		function runOpenDocumentation(browserName){
